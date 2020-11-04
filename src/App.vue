@@ -16,7 +16,7 @@ export default {
   },
   data(){
     return {
-      step: 1
+      step: 2
     }
   }
 }
@@ -28,6 +28,8 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: $c-primary;
+  font-size: 25px;
+  line-height: 1.172;
 }
 
 .app {

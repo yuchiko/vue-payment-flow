@@ -27,5 +27,7 @@ export default {
     letter-spacing: 0;
     text-align: left;
     color: $c-black;
+    padding: 0;
+    margin: 0;
   }
 </style>
