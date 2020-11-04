@@ -1,28 +1,38 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="app" id="app">
+    <div class="app__container">
+      <PaymentCalculateForm :step="step"/>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import PaymentCalculateForm from './components/PaymentCalculateForm.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    PaymentCalculateForm
+  },
+  data(){
+    return {
+      step: 1
+    }
   }
 }
 </script>
 
-<style>
+<style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: $c-primary;
+}
+
+.app {
+  &__container {
+    padding: 40px 30px;
+  }
 }
 </style>
