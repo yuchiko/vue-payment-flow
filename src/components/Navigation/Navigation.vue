@@ -1,14 +1,14 @@
 <template>
-  <div class="nav">
+  <div class="nav" @click="onClickHandler">
     <template v-if="step == 1">
-      <NavigationButton direction="left" />
+      <NavigationButton class="m-l-auto" direction="right"/>
     </template>
     <template v-else-if="step > 1 && step < lastStep">
-      <NavigationButton direction="left" />
-      <NavigationButton direction="right" />
+      <NavigationButton direction="left"/>
+      <NavigationButton direction="right"/>
     </template>
     <template v-else>
-      <NavigationButton class="m-l-auto" label="Calculate" />
+      <NavigationButton class="m-l-auto" label="Calculate"/>
     </template>
   </div>
 </template>
@@ -23,6 +23,11 @@ export default {
     step: Number,
     lastStep: Number,
   },
+  methods: {
+      onClickHandler() {
+          console.log('clicked');
+      }
+  }
 };
 </script>
 

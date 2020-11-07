@@ -16,7 +16,7 @@ export default {
   components: { Stepper, Navigation },
   data(){
     return {
-      step: 5,
+      step: 1,
       tabs: tabsData
     }
   }
