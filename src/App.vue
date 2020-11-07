@@ -1,7 +1,7 @@
 <template>
   <div class="app" id="app">
     <div class="app__container">
-      <PaymentCalculateForm :step="step"/>
+      <PaymentCalculateForm />
     </div>
   </div>
 </template>
@@ -14,11 +14,6 @@ export default {
   components: {
     PaymentCalculateForm
   },
-  data(){
-    return {
-      step: 2
-    }
-  }
 }
 </script>
 

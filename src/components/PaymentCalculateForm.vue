@@ -1,18 +1,24 @@
 <template>
   <div>
     <h1 class="h1">Pay-per-use Financing</h1>
-    <Steps :step="step" />
+    <Stepper :step="step" :tabs="tabs" />
+    <Navigation :step="step" :last-step="tabs.length"/>
   </div>
 </template>
 
 <script>
-import Steps from './Steps';
+import tabsData from '@/data/tabs';
+import Stepper from './Stepper/';
+import Navigation from './Navigation/';
 
 export default {
   name: 'PaymentCalculateForm',
-  components: { Steps },
-  props: {
-    step: Number
+  components: { Stepper, Navigation },
+  data(){
+    return {
+      step: 5,
+      tabs: tabsData
+    }
   }
 }
 </script>
