@@ -11,7 +11,8 @@ export default [
     },
     {
         label: 'Price',
-        icon: PriceIcon
+        icon: PriceIcon,
+        heading: 'Equipment Price'
     },
     {
         label: 'Re-Use',

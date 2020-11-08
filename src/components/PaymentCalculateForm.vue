@@ -2,6 +2,7 @@
   <div>
     <h1 class="h1">Pay-per-use Financing</h1>
     <Stepper :step="step" :tabs="tabs" />
+    <Tabs :step="step" :tabs="tabs" />
     <Navigation 
       :step="step" 
       :last-step="tabs.length" 
@@ -14,13 +15,14 @@
 import tabsData from '@/data/tabs';
 import Stepper from './Stepper/';
 import Navigation from './Navigation/';
+import Tabs from './Tabs/';
 
 export default {
   name: 'PaymentCalculateForm',
-  components: { Stepper, Navigation },
+  components: { Stepper, Navigation, Tabs },
   data(){
     return {
-      step: 5,
+      step: 2,
       tabs: tabsData
     }
   },
