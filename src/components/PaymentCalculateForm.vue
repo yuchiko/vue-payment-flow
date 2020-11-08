@@ -2,7 +2,11 @@
   <div>
     <h1 class="h1">Pay-per-use Financing</h1>
     <Stepper :step="step" :tabs="tabs" />
-    <Navigation :step="step" :last-step="tabs.length"/>
+    <Navigation 
+      :step="step" 
+      :last-step="tabs.length" 
+      v-on:nav-btn-clicked="handleNavBtnClicked" 
+    />
   </div>
 </template>
 
@@ -16,10 +20,37 @@ export default {
   components: { Stepper, Navigation },
   data(){
     return {
-      step: 1,
+      step: 5,
       tabs: tabsData
     }
-  }
+  },
+  methods: {
+    handleNavBtnClicked(btnType) {
+      switch (btnType) {
+        case 'back':
+          this.handleBackClick();
+          break;
+        case 'next':
+          this.handleNextClick();
+          break;
+        case 'calculate':
+          this.handleCalculateClick();
+          break;
+        default:
+          console.error('Unknown button was clicked. Please check btnType property for NavigationButton components.');
+          break;
+      }
+    },
+    handleBackClick() {
+      return this.step > 1 ? this.step-- : this.step;
+    },
+    handleNextClick() {
+      return this.step < this.tabs.length ? this.step++ : this.step;
+    },
+    handleCalculateClick() {
+      console.log('data send');
+    }
+  },
 }
 </script>
 

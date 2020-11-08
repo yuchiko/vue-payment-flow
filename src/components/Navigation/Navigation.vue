@@ -1,15 +1,8 @@
 <template>
-  <div class="nav" @click="onClickHandler">
-    <template v-if="step == 1">
-      <NavigationButton class="m-l-auto" direction="right"/>
-    </template>
-    <template v-else-if="step > 1 && step < lastStep">
-      <NavigationButton direction="left"/>
-      <NavigationButton direction="right"/>
-    </template>
-    <template v-else>
-      <NavigationButton class="m-l-auto" label="Calculate"/>
-    </template>
+  <div class="nav">
+      <NavigationButton v-if="step > 1" direction="left" @click.native="handleButtonClicked('back')" />
+      <NavigationButton v-if="step !== lastStep" class="m-l-auto" direction="right" @click.native="handleButtonClicked('next')"/>
+      <NavigationButton v-else class="m-l-auto" label="Calculate" @click.native="handleButtonClicked('calculate')"/>
   </div>
 </template>
 
@@ -17,16 +10,16 @@
 import NavigationButton from "./NavigationButton";
 
 export default {
-  name: "Navigation",
+  name: "Navigation",   
   components: { NavigationButton },
   props: {
     step: Number,
     lastStep: Number,
   },
   methods: {
-      onClickHandler() {
-          console.log('clicked');
-      }
+      handleButtonClicked(btnType) {
+        this.$emit('nav-btn-clicked', btnType);
+      },
   }
 };
 </script>

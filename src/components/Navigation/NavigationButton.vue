@@ -5,7 +5,6 @@
       'button--icon': !label,
       'boxed': direction !== 'left',
     }"
-    v-on:click="$emit('click', $event)"
   >
     <ArrowIcon v-if="!label" :class="{'right-arrow': direction == 'right'}" />
     <span v-else v-html="label"></span>
@@ -42,6 +41,7 @@ export default {
   background: none;
   padding: 0;
   line-height: 1;
+  cursor: pointer;
 
   &--icon {
     font-size: 0;
