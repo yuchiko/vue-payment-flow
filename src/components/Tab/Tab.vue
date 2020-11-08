@@ -1,15 +1,14 @@
 <template>
-  <div class="tabs">
-    <h2 class="tabs__heading">
-      {{tabHeading}}
-    </h2>
+  <div class="tab">
+    <h2 class="tab__heading">{{tabHeading}}</h2>
+    <component :is="tabs[stepIndex].tabComponent" />
   </div>
 </template>
 
 <script>
 
 export default {
-  name: 'Tabs',
+  name: 'Tab',
   props: {
     step: Number,
     tabs: Array
@@ -27,10 +26,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .tabs__heading {
-    border-bottom: 2px solid;
-    font-size: 30px;
-    font-weight: $fw-medium;
-    color: $c-primary;
+  .tab {
+    &__heading {
+      border-bottom: 2px solid;
+      font-size: 30px;
+      font-weight: $fw-medium;
+      color: $c-primary;
+    }
   }
 </style>

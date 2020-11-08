@@ -4,28 +4,41 @@ import ReUseIcon from "@/assets/icons/re-use.svg?inline";
 import FundIcon from "@/assets/icons/fund.svg?inline";
 import PaymentIcon from "@/assets/icons/payment.svg?inline";
 
+import { 
+    GeneralTab,
+    PriceTab,
+    ReuseTab,
+    FundTab,
+    PaymentTab
+} from "@/components/Tab/items"
+
 export default [
     {
         label: 'General',
-        icon: GeneralIcon
+        icon: GeneralIcon,
+        tabComponent: GeneralTab
     },
     {
         label: 'Price',
         icon: PriceIcon,
-        heading: 'Equipment Price'
+        heading: 'Equipment Price',
+        tabComponent: PriceTab
     },
     {
         label: 'Re-Use',
         icon: ReUseIcon,
-        heading: 'Reuse'
+        heading: 'Reuse',
+        tabComponent: ReuseTab
     },
     {
         label: 'Fund',
-        icon: FundIcon
+        icon: FundIcon,
+        tabComponent: FundTab
     },
     {
         label: 'Payment<br>Option',
         icon: PaymentIcon,
-        heading: 'Payment Option'
+        heading: 'Payment Option',
+        tabComponent: PaymentTab
     },
 ]
