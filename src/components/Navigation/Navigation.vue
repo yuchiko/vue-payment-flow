@@ -26,7 +26,7 @@ export default {
 
 <style scoped lang="scss">
 .nav {
-  margin-top: 6rem;
+  padding-top: 2rem;
   display: flex;
   justify-content: space-between;
 }
