@@ -17,6 +17,7 @@
     "vue": "^2.6.11",
     "vue-currency-input": "^1.22.3",
     "vue-select": "^3.10.8",
+    "vue-slider-component": "^3.2.10",
     "vuex": "^3.5.1"
   },
   "devDependencies": {

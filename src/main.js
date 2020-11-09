@@ -10,7 +10,7 @@ const pluginOptions = {
   /* see config reference */
   globalOptions: { 
     currency: null,
-    locale: 'en',
+    locale: 'de',
     distractionFree: false,
     valueAsInteger: true,
     autoDecimalMode: true
