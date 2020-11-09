@@ -4,6 +4,7 @@ import FieldGroup from './FieldGroup'
 import RadioButtons from './RadioButtons'
 import NumberInput from './NumberInput'
 import NumberSlider from './NumberSlider'
+import Checkbox from './Checkbox'
 
 export {
     Select,
@@ -11,5 +12,6 @@ export {
     FieldGroup,
     RadioButtons,
     NumberInput,
-    NumberSlider
+    NumberSlider,
+    Checkbox
 }

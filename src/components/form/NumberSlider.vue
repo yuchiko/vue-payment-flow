@@ -62,6 +62,7 @@ export default {
 
   .vue-slider {
     flex: 1 1 65%;
+    margin-left: 15px;
     margin-right: 20px;
     height: 10px !important;
   }

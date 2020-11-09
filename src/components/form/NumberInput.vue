@@ -1,13 +1,21 @@
 <template>
   <FieldGroup>
     <Label>{{ labelString }}</Label>
-    <div class="num-input">
-      <currency-input
-        class="num-input__el"
-        :class="{ 'is-selected': $attrs.value }"
-        v-bind="$attrs"
-        v-on="parentListeners"
-      />
+    <div :class="{'w-right': !!this.$slots.right}">
+      <div class="left-part">
+        <div class="num-input">
+          <currency-input
+            class="num-input__el"
+            :class="{ 'is-selected': $attrs.value }"
+            v-bind="$attrs"
+            v-on="parentListeners"
+          />
+        </div>
+        <slot />
+      </div>
+      <div class="right-part">
+        <slot name="right"></slot>
+      </div>
     </div>
   </FieldGroup>
 </template>
@@ -32,12 +40,32 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.w-right {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+
+  .left-part {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .right-part {
+    flex: 1;
+    margin-left: 4px;
+    min-width: 200px;
+  }
+
+    &::v-deep .field-group {
+    margin: 0;
+  }
+}
 .num-input {
   position: relative;
 
   &::after {
     position: absolute;
-    content: '€';
+    content: "€";
     top: 50%;
     right: 20px;
     transform: translateY(-50%);
@@ -47,7 +75,7 @@ export default {
     width: 100%;
     border: 3px solid $c-border;
     border-radius: 10px;
-    padding: 10px 40px;
+    padding: 10px 40px 10px 10px;
     text-align: right;
 
     &.is-selected {
