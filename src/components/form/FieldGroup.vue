@@ -1,5 +1,5 @@
 <template>
-  <div class="input-group">
+  <div class="field-group">
       <slot />
   </div>
 </template>
@@ -11,7 +11,8 @@ export default {
 </script>
 
 <style computed lang="scss">
-    .input-group {
+    .field-group {
+        position: relative;
         margin-bottom: 40px;
     }
 </style>

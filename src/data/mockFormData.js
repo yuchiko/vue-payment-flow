@@ -135,5 +135,15 @@ export default {
         }
       ]
     },
+  ],
+  billing_cycles: [
+    {
+      label: "Monthly Payment",
+      value: "monthly_payment",
+    },
+    {
+      label: "Quarterly Payment",
+      value: "quarterly_payment",
+    },
   ]
 };
