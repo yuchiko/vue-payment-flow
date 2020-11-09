@@ -50,7 +50,7 @@ export default {
       return this.step < this.tabs.length ? this.step++ : this.step;
     },
     handleCalculateClick() {
-      console.log('data send');
+      console.log(this.$store.state.paymentForm);
     }
   },
 }
