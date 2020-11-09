@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VueCurrencyInput from 'vue-currency-input'
+import "vue-slider-component/theme/antd.css";
 
 import {store} from './store';
 

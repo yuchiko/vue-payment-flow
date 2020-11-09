@@ -26,7 +26,6 @@
 import Label from "./Label";
 import FieldGroup from "./FieldGroup";
 import VueSlider from "vue-slider-component";
-import "vue-slider-component/theme/antd.css";
 
 export default {
   name: "NumberSlider",
@@ -73,6 +72,14 @@ export default {
 
   &::v-deep .vue-slider-process {
     background: $c-secondary;
+    background: #8576a5;
+  }
+
+  &::v-deep .vue-slider:hover .vue-slider-process {
+    background: #8576a5;
+  }
+
+  &::v-deep .vue-slider .vue-slider-process {
     background: #8576a5;
   }
 

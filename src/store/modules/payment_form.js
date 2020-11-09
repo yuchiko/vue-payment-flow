@@ -43,8 +43,8 @@ const state = () => ({
   risk_table_insurance_credit_risk: false,
   risk_table_insurance_early_termination_risk: false,
   risk_table_insurance_pay_per_use_risk: false,
-  time_fee: null,
-  pay_per_use_fee: null,
+  time_fee: 50,
+  pay_per_use_fee: 50,
   contract_duration: null,
   contract_duration_payment_type: 'months',
   billing_cycle: 'Monthly Payment'
