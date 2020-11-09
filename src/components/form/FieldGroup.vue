@@ -11,5 +11,7 @@ export default {
 </script>
 
 <style computed lang="scss">
-
+    .input-group {
+        margin-bottom: 60px;
+    }
 </style>
