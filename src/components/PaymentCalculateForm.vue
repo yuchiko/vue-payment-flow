@@ -2,7 +2,7 @@
   <div>
     <h1 class="h1">Pay-per-use Financing</h1>
     <Stepper :step="step" :tabs="tabs" />
-    <Tab :step="step" :tabs="tabs" />
+    <Tab :step="step" :tabs="tabs"/>
     <Navigation 
       :step="step" 
       :last-step="tabs.length" 
@@ -22,8 +22,8 @@ export default {
   components: { Stepper, Navigation, Tab },
   data(){
     return {
-      step: 2,
-      tabs: tabsData
+      step: 1,
+      tabs: tabsData,
     }
   },
   methods: {
@@ -55,6 +55,10 @@ export default {
   },
 }
 </script>
+
+<style lang="scss">
+  @import "@/components/form/form.scss";
+</style>
 
 <style scoped lang="scss">
   .h1 {

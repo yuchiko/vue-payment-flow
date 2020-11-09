@@ -11,7 +11,7 @@ export default {
   name: 'Tab',
   props: {
     step: Number,
-    tabs: Array
+    tabs: Array,
   },
   computed: {
     // helper function to work with array from 0 index
@@ -32,6 +32,8 @@ export default {
       font-size: 30px;
       font-weight: $fw-medium;
       color: $c-primary;
+      margin-top: 0;
+      margin-bottom: 40px;
     }
   }
 </style>
