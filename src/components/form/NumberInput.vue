@@ -58,6 +58,10 @@ export default {
     flex: 1;
     margin-left: 4px;
     min-width: 200px;
+
+    &::v-deep .vs__dropdown-toggle {
+      padding: 0 0 7px 0;
+    }
   }
 
     &::v-deep .field-group {

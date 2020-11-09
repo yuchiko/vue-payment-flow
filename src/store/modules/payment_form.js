@@ -46,7 +46,7 @@ const state = () => ({
   time_fee: null,
   pay_per_use_fee: null,
   contract_duration: null,
-  contract_duration_payment_type: 'monthly',
+  contract_duration_payment_type: 'months',
   billing_cycle: 'Monthly Payment'
 });
 

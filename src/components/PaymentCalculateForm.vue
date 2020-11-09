@@ -22,7 +22,7 @@ export default {
   components: { Stepper, Navigation, Tab },
   data(){
     return {
-      step: 4,
+      step: 5,
       tabs: tabsData,
     }
   },

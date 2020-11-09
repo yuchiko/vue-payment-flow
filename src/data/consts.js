@@ -12,5 +12,15 @@ export default {
             label: "annually",
             value: "annually"
         }
+    ],
+    durationTypes: [
+        {
+            label: "months",
+            value: "months"
+        },
+        {
+            label: "years",
+            value: "years"
+        }
     ]
 }

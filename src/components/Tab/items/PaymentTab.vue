@@ -1,35 +1,23 @@
 <template>
   <div>
     <NumberInput
-      v-model="residual_value"
-      label-string='Residual Value' 
-    />
-    <NumberInput
-      v-model="residual_value_term"
-      label-string='Residual Value Term' 
+      v-model="contract_duration"
+      label-string='Contract Duration'
+      :precision="0"
+      sign="" 
     >
       <template #right>
         <Select
-          v-model="residual_value_term_payment_type" 
-          :options="formData.paymentTypes"
+          v-model="contract_duration_payment_type" 
+          :options="formData.durationTypes"
         />
       </template>
     </NumberInput>
-    <NumberInput
-      v-model="refurbishment_costs"
-      label-string='Refurbishment Costs' 
+    <Select
+      v-model="billing_cycle"
+      label-string="Billing Cycle"
+      :options="formData.paymentTypes"
     />
-    <NumberInput
-      v-model="refurbishment_term"
-      label-string='Refurbishment Term' 
-    >
-      <template #right>
-        <Select
-          v-model="refurbishment_term_payment_type" 
-          :options="formData.paymentTypes"
-        />
-      </template>
-    </NumberInput>
   </div>
 </template>
 
@@ -48,28 +36,28 @@ export default {
   props: {
   },
   computed: {
-    residual_value: {
+    contract_duration: {
       get () {
-        return this.$store.state.paymentForm.residual_value
+        return this.$store.state.paymentForm.contract_duration
       },
       set (value) {
-        this.$store.commit('UPDATE_FORM_FIELD', {fieldName: 'residual_value', value})
+        this.$store.commit('UPDATE_FORM_FIELD', {fieldName: 'contract_duration', value})
       }
     },
-    residual_value_term: {
+    contract_duration_payment_type: {
       get () {
-        return this.$store.state.paymentForm.residual_value_term
+        return this.$store.state.paymentForm.contract_duration_payment_type
       },
       set (value) {
-        this.$store.commit('UPDATE_FORM_FIELD', {fieldName: 'residual_value_term', value})
+        this.$store.commit('UPDATE_FORM_FIELD', {fieldName: 'contract_duration_payment_type', value})
       }
     },
-    residual_value_term_payment_type: {
+    billing_cycle: {
       get () {
-        return this.$store.state.paymentForm.residual_value_term_payment_type
+        return this.$store.state.paymentForm.billing_cycle
       },
       set (value) {
-        this.$store.commit('UPDATE_FORM_FIELD', {fieldName: 'residual_value_term_payment_type', value})
+        this.$store.commit('UPDATE_FORM_FIELD', {fieldName: 'billing_cycle', value})
       }
     },
     refurbishment_costs: {
