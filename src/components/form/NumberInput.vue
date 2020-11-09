@@ -3,7 +3,7 @@
     <Label>{{ labelString }}</Label>
     <div :class="{'w-right': !!this.$slots.right}">
       <div class="left-part">
-        <div class="num-input">
+        <div class="num-input" :data-sign="sign">
           <currency-input
             class="num-input__el"
             :class="{ 'is-selected': $attrs.value }"
@@ -28,6 +28,10 @@ export default {
   name: "NumberInput",
   props: {
     labelString: String,
+    sign: {
+      type: String,
+      default: '€'
+    },
   },
   components: { Label, FieldGroup },
   computed: {
@@ -65,7 +69,7 @@ export default {
 
   &::after {
     position: absolute;
-    content: "€";
+    content: attr(data-sign);
     top: 50%;
     right: 20px;
     transform: translateY(-50%);
