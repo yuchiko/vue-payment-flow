@@ -1,7 +1,12 @@
 <template>
   <FieldGroup>
     <Label>{{ labelString }}</Label>
-    <v-select v-bind="$attrs" v-on="parentListeners">
+    <v-select 
+      v-bind="$attrs"
+      v-on="parentListeners" 
+      :clearable="false"
+      :class="{'is-selected': $attrs.value}"
+    >
       <template #open-indicator="{ attributes }">
         <span v-bind="attributes">
           <selectIcon />
@@ -42,6 +47,9 @@ export default {
   }
   &__actions {
     padding: 0px 20px 0 5px;
+  }
+  .is-selected &__dropdown-toggle {
+    background: rgba(219,219,219,0.4);
   }
 }
 </style>
