@@ -102,6 +102,87 @@
           />
         </div>
       </div>
+      <div class="group-numeric">
+        <div class="group-numeric__heading">Per-Operation-Hour Payment</div>
+        <div class="group-numeric__item">
+          <Checkbox
+            v-model="risk_table_per_operation_hour_payment_credit_risk"
+            :current-value="risk_table_per_operation_hour_payment_credit_risk"
+            id="risk_table_per_operation_hour_payment_credit_risk"
+            label="Credit Risk"
+          />
+        </div>
+        <div class="group-numeric__item">
+          <Checkbox
+            v-model="risk_table_per_operation_hour_payment_early_termination_risk"
+            :current-value="risk_table_per_operation_hour_payment_early_termination_risk"
+            id="risk_table_per_operation_hour_payment_early_termination_risk"
+            label="Early Termination Risk"
+          />
+        </div>
+        <div class="group-numeric__item">
+          <Checkbox
+            v-model="risk_table_per_operation_hour_payment_pay_per_use_risk"
+            :current-value="risk_table_per_operation_hour_payment_pay_per_use_risk"
+            id="risk_table_per_operation_hour_payment_pay_per_use_risk"
+            label="Pay-per-use Risk"
+          />
+        </div>
+      </div>
+      <div class="group-numeric">
+        <div class="group-numeric__heading">Maintenance</div>
+        <div class="group-numeric__item">
+          <Checkbox
+            v-model="risk_table_maintenance_credit_risk"
+            :current-value="risk_table_maintenance_credit_risk"
+            id="risk_table_maintenance_credit_risk"
+            label="Credit Risk"
+          />
+        </div>
+        <div class="group-numeric__item">
+          <Checkbox
+            v-model="risk_table_maintenance_early_termination_risk"
+            :current-value="risk_table_maintenance_early_termination_risk"
+            id="risk_table_maintenance_early_termination_risk"
+            label="Early Termination Risk"
+          />
+        </div>
+        <div class="group-numeric__item">
+          <Checkbox
+            v-model="risk_table_maintenance_pay_per_use_risk"
+            :current-value="risk_table_maintenance_pay_per_use_risk"
+            id="risk_table_maintenance_pay_per_use_risk"
+            label="Pay-per-use Risk"
+          />
+        </div>
+      </div>
+      <div class="group-numeric">
+        <div class="group-numeric__heading">Insurance</div>
+        <div class="group-numeric__item">
+          <Checkbox
+            v-model="risk_table_insurance_credit_risk"
+            :current-value="risk_table_insurance_credit_risk"
+            id="risk_table_insurance_credit_risk"
+            label="Credit Risk"
+          />
+        </div>
+        <div class="group-numeric__item">
+          <Checkbox
+            v-model="risk_table_insurance_early_termination_risk"
+            :current-value="risk_table_insurance_early_termination_risk"
+            id="risk_table_insurance_early_termination_risk"
+            label="Early Termination Risk"
+          />
+        </div>
+        <div class="group-numeric__item">
+          <Checkbox
+            v-model="risk_table_insurance_pay_per_use_risk"
+            :current-value="risk_table_insurance_pay_per_use_risk"
+            id="risk_table_insurance_pay_per_use_risk"
+            label="Pay-per-use Risk"
+          />
+        </div>
+      </div>
     </FieldGroup>
   </div>
 </template>
@@ -296,6 +377,114 @@ export default {
         });
       },
     },
+    risk_table_per_operation_hour_payment_credit_risk: {
+      get() {
+        return this.$store.state.paymentForm
+          .risk_table_per_operation_hour_payment_credit_risk;
+      },
+      set(value) {
+        this.$store.commit("UPDATE_FORM_FIELD", {
+          fieldName: "risk_table_per_operation_hour_payment_credit_risk",
+          value,
+        });
+      },
+    },
+    risk_table_per_operation_hour_payment_early_termination_risk: {
+      get() {
+        return this.$store.state.paymentForm
+          .risk_table_per_operation_hour_payment_early_termination_risk;
+      },
+      set(value) {
+        this.$store.commit("UPDATE_FORM_FIELD", {
+          fieldName: "risk_table_per_operation_hour_payment_early_termination_risk",
+          value,
+        });
+      },
+    },
+    risk_table_per_operation_hour_payment_pay_per_use_risk: {
+      get() {
+        return this.$store.state.paymentForm
+          .risk_table_per_operation_hour_payment_pay_per_use_risk;
+      },
+      set(value) {
+        this.$store.commit("UPDATE_FORM_FIELD", {
+          fieldName: "risk_table_per_operation_hour_payment_pay_per_use_risk",
+          value,
+        });
+      },
+    },
+    risk_table_maintenance_credit_risk: {
+      get() {
+        return this.$store.state.paymentForm
+          .risk_table_maintenance_credit_risk;
+      },
+      set(value) {
+        this.$store.commit("UPDATE_FORM_FIELD", {
+          fieldName: "risk_table_maintenance_credit_risk",
+          value,
+        });
+      },
+    },
+    risk_table_maintenance_early_termination_risk: {
+      get() {
+        return this.$store.state.paymentForm
+          .risk_table_maintenance_early_termination_risk;
+      },
+      set(value) {
+        this.$store.commit("UPDATE_FORM_FIELD", {
+          fieldName: "risk_table_maintenance_early_termination_risk",
+          value,
+        });
+      },
+    },
+    risk_table_maintenance_pay_per_use_risk: {
+      get() {
+        return this.$store.state.paymentForm
+          .risk_table_maintenance_pay_per_use_risk;
+      },
+      set(value) {
+        this.$store.commit("UPDATE_FORM_FIELD", {
+          fieldName: "risk_table_maintenance_pay_per_use_risk",
+          value,
+        });
+      },
+    },
+    risk_table_insurance_credit_risk: {
+      get() {
+        return this.$store.state.paymentForm
+          .risk_table_insurance_credit_risk;
+      },
+      set(value) {
+        this.$store.commit("UPDATE_FORM_FIELD", {
+          fieldName: "risk_table_insurance_credit_risk",
+          value,
+        });
+      },
+    },
+    risk_table_insurance_early_termination_risk: {
+      get() {
+        return this.$store.state.paymentForm
+          .risk_table_insurance_early_termination_risk;
+      },
+      set(value) {
+        this.$store.commit("UPDATE_FORM_FIELD", {
+          fieldName: "risk_table_insurance_early_termination_risk",
+          value,
+        });
+      },
+    },
+    risk_table_insurance_pay_per_use_risk: {
+      get() {
+        return this.$store.state.paymentForm
+          .risk_table_insurance_pay_per_use_risk;
+      },
+      set(value) {
+        this.$store.commit("UPDATE_FORM_FIELD", {
+          fieldName: "risk_table_insurance_pay_per_use_risk",
+          value,
+        });
+      },
+    },
   },
 };
 </script>
@@ -317,6 +506,8 @@ export default {
 }
 
 .group-numeric {
+  margin-bottom: 30px;
+
   &__heading {
     margin-top: 10px;
   }

@@ -3,13 +3,13 @@
     <input
         class="custom-checkbox"
         type="checkbox"
-        :id="'ch-' + label"
+        :id="componentId"
         :name="currentValue"
         :currentValue="currentValue"
         :checked="currentValue"
         v-bind="$attrs" v-on="parentListeners"
     />
-    <label :for="'ch-' + label">{{label}}</label>
+    <label :for="componentId">{{label}}</label>
   </div>
 </template>
 
@@ -19,9 +19,13 @@ export default {
   name: "Checkbox",
   props: {
     label: String,
-    currentValue: [Boolean, Event]
+    currentValue: [Boolean, Event],
+    id: String,
   },
   computed: {
+    componentId() {
+      return this.id ? this.id : 'ch' + this.label;
+    },
     parentListeners: function() {
       // var vm = this;
       return Object.assign({}, this.$listeners);
