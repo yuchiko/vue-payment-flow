@@ -31,12 +31,12 @@ const state = () => ({
   margin_credit_risk: null,
   margin_early_termination_risk: null,
   margin_pay_per_use_risk: null,
-  risk_table: {
-    monthly_instalment: '',
-    per_operation_hour_payment: '',
-    maintenance: '',
-    insurance: ''
-  },
+  risk_table_monthly_instalment_credit_risk: false,
+  risk_table_monthly_instalment_early_termination_risk: false,
+  risk_table_monthly_instalment_pay_per_use_risk: false,
+  risk_table_per_operation_hour_payment_credit_risk: false,
+  risk_table_per_operation_hour_payment_early_termination_risk: false,
+  risk_table_per_operation_hour_payment_pay_per_use_risk: false,
   time_fee: null,
   pay_per_use_fee: null,
   contract_duration: null,

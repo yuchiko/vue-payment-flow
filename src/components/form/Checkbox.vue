@@ -3,13 +3,13 @@
     <input
         class="custom-checkbox"
         type="checkbox"
-        :id="'ch-' + currentValue"
+        :id="'ch-' + label"
         :name="currentValue"
         :currentValue="currentValue"
         :checked="currentValue"
         v-bind="$attrs" v-on="parentListeners"
     />
-    <label :for="'ch-' + currentValue">{{label}}</label>
+    <label :for="'ch-' + label">{{label}}</label>
   </div>
 </template>
 

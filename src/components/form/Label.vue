@@ -12,5 +12,9 @@ export default {
 .label {
   display: block;
   margin-bottom: 4px;
+
+  &--bold {
+    font-weight: $fw-bold;
+  }
 }
 </style>
