@@ -1,6 +1,6 @@
 <template>
     <div class="item" :class="{'is-active': isActive}">
-        <div class="item__icon">
+        <div class="item__icon" @click="handleClick">
             <component :is="icon"></component>
         </div>
         <span class="item__label" v-html="label" />
@@ -14,7 +14,13 @@ export default {
     label: String,
     active: Boolean,
     icon: Object,
-    isActive: Boolean
+    isActive: Boolean,
+    stepIndex: Number
+  },
+  methods: {
+    handleClick(){
+        this.$emit('stepper-item-click', {isActive: this.isActive, stepIndex: this.stepIndex})
+    }
   }
 }
 </script>

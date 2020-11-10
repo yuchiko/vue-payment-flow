@@ -1,12 +1,12 @@
 <template>
   <div>
     <h1 class="h1">Pay-per-use Financing</h1>
-    <Stepper :step="step" :tabs="tabs" />
+    <Stepper :step="step" :tabs="tabs" v-on:stepper-click="handleStepperClicked" />
     <Tab :step="step" :tabs="tabs"/>
     <Navigation 
       :step="step" 
       :last-step="tabs.length" 
-      v-on:nav-btn-clicked="handleNavBtnClicked" 
+      v-on:nav-btn-clicked="handleNavBtnClicked"
     />
   </div>
 </template>
@@ -51,6 +51,9 @@ export default {
     },
     handleCalculateClick() {
       console.log(this.$store.state.paymentForm);
+    },
+    handleStepperClicked({isActive, stepIndex}) {
+      if (isActive) this.step = stepIndex;
     }
   },
 }

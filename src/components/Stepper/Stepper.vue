@@ -5,7 +5,9 @@
         :label="tab.label" 
         :key="tab.label" 
         :icon="tab.icon"
-        :is-active="index+1 <= step" />
+        :step-index="index+1"
+        :is-active="index+1 <= step"
+        v-on:stepper-item-click="handleStepperClick" />
       <span v-if="index < tabs.length - 1" class="stepper__divider" :key="tab.label + '-label'"></span>
     </template>
   </div>
@@ -21,6 +23,11 @@ export default {
     step: Number,
     tabs: Array
   },
+  methods: {
+    handleStepperClick({isActive, stepIndex}) {
+      this.$emit('stepper-click', {isActive, stepIndex})
+    }
+  }
 }
 </script>
 
