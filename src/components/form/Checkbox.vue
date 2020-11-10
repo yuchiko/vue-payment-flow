@@ -4,10 +4,10 @@
         class="custom-checkbox"
         type="checkbox"
         :id="componentId"
-        :name="currentValue"
-        :currentValue="currentValue"
-        :checked="currentValue"
-        v-bind="$attrs" v-on="parentListeners"
+        :name="componentId"
+        :checked="$attrs.value"
+        v-bind="$attrs" 
+        v-on="parentListeners"
     />
     <label :for="componentId">{{label}}</label>
   </div>
@@ -19,7 +19,6 @@ export default {
   name: "Checkbox",
   props: {
     label: String,
-    currentValue: [Boolean, Event],
     id: String,
   },
   computed: {

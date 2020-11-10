@@ -81,23 +81,21 @@
         <div class="group-numeric__item">
           <Checkbox
             v-model="risk_table_monthly_instalment_credit_risk"
-            :current-value="risk_table_monthly_instalment_credit_risk"
+            id="risk_table_monthly_instalment_credit_risk"
             label="Credit Risk"
           />
         </div>
         <div class="group-numeric__item">
           <Checkbox
             v-model="risk_table_monthly_instalment_early_termination_risk"
-            :current-value="
-              risk_table_monthly_instalment_early_termination_risk
-            "
+            id="risk_table_monthly_instalment_early_termination_risk"
             label="Early Termination Risk"
           />
         </div>
         <div class="group-numeric__item">
           <Checkbox
             v-model="risk_table_monthly_instalment_pay_per_use_risk"
-            :current-value="risk_table_monthly_instalment_pay_per_use_risk"
+            id="risk_table_monthly_instalment_pay_per_use_risk"
             label="Pay-per-use Risk"
           />
         </div>
@@ -107,7 +105,6 @@
         <div class="group-numeric__item">
           <Checkbox
             v-model="risk_table_per_operation_hour_payment_credit_risk"
-            :current-value="risk_table_per_operation_hour_payment_credit_risk"
             id="risk_table_per_operation_hour_payment_credit_risk"
             label="Credit Risk"
           />
@@ -115,7 +112,6 @@
         <div class="group-numeric__item">
           <Checkbox
             v-model="risk_table_per_operation_hour_payment_early_termination_risk"
-            :current-value="risk_table_per_operation_hour_payment_early_termination_risk"
             id="risk_table_per_operation_hour_payment_early_termination_risk"
             label="Early Termination Risk"
           />
@@ -123,7 +119,6 @@
         <div class="group-numeric__item">
           <Checkbox
             v-model="risk_table_per_operation_hour_payment_pay_per_use_risk"
-            :current-value="risk_table_per_operation_hour_payment_pay_per_use_risk"
             id="risk_table_per_operation_hour_payment_pay_per_use_risk"
             label="Pay-per-use Risk"
           />
@@ -134,7 +129,6 @@
         <div class="group-numeric__item">
           <Checkbox
             v-model="risk_table_maintenance_credit_risk"
-            :current-value="risk_table_maintenance_credit_risk"
             id="risk_table_maintenance_credit_risk"
             label="Credit Risk"
           />
@@ -142,7 +136,6 @@
         <div class="group-numeric__item">
           <Checkbox
             v-model="risk_table_maintenance_early_termination_risk"
-            :current-value="risk_table_maintenance_early_termination_risk"
             id="risk_table_maintenance_early_termination_risk"
             label="Early Termination Risk"
           />
@@ -150,7 +143,6 @@
         <div class="group-numeric__item">
           <Checkbox
             v-model="risk_table_maintenance_pay_per_use_risk"
-            :current-value="risk_table_maintenance_pay_per_use_risk"
             id="risk_table_maintenance_pay_per_use_risk"
             label="Pay-per-use Risk"
           />
@@ -161,7 +153,6 @@
         <div class="group-numeric__item">
           <Checkbox
             v-model="risk_table_insurance_credit_risk"
-            :current-value="risk_table_insurance_credit_risk"
             id="risk_table_insurance_credit_risk"
             label="Credit Risk"
           />
@@ -169,7 +160,6 @@
         <div class="group-numeric__item">
           <Checkbox
             v-model="risk_table_insurance_early_termination_risk"
-            :current-value="risk_table_insurance_early_termination_risk"
             id="risk_table_insurance_early_termination_risk"
             label="Early Termination Risk"
           />
@@ -177,7 +167,6 @@
         <div class="group-numeric__item">
           <Checkbox
             v-model="risk_table_insurance_pay_per_use_risk"
-            :current-value="risk_table_insurance_pay_per_use_risk"
             id="risk_table_insurance_pay_per_use_risk"
             label="Pay-per-use Risk"
           />
@@ -196,6 +185,7 @@ import {
   Checkbox,
 } from "@/components/form";
 import data from "@/data/consts";
+import {storeCheckbox} from "@/helpers/computed_store"
 
 export default {
   name: "FundTab",
@@ -341,150 +331,18 @@ export default {
         });
       },
     },
-    risk_table_monthly_instalment_credit_risk: {
-      get() {
-        return this.$store.state.paymentForm
-          .risk_table_monthly_instalment_credit_risk;
-      },
-      set(value) {
-        this.$store.commit("UPDATE_FORM_FIELD", {
-          fieldName: "risk_table_monthly_instalment_credit_risk",
-          value,
-        });
-      },
-    },
-    risk_table_monthly_instalment_early_termination_risk: {
-      get() {
-        return this.$store.state.paymentForm
-          .risk_table_monthly_instalment_early_termination_risk;
-      },
-      set(value) {
-        this.$store.commit("UPDATE_FORM_FIELD", {
-          fieldName: "risk_table_monthly_instalment_early_termination_risk",
-          value,
-        });
-      },
-    },
-    risk_table_monthly_instalment_pay_per_use_risk: {
-      get() {
-        return this.$store.state.paymentForm
-          .risk_table_monthly_instalment_pay_per_use_risk;
-      },
-      set(value) {
-        this.$store.commit("UPDATE_FORM_FIELD", {
-          fieldName: "risk_table_monthly_instalment_pay_per_use_risk",
-          value,
-        });
-      },
-    },
-    risk_table_per_operation_hour_payment_credit_risk: {
-      get() {
-        return this.$store.state.paymentForm
-          .risk_table_per_operation_hour_payment_credit_risk;
-      },
-      set(value) {
-        this.$store.commit("UPDATE_FORM_FIELD", {
-          fieldName: "risk_table_per_operation_hour_payment_credit_risk",
-          value,
-        });
-      },
-    },
-    risk_table_per_operation_hour_payment_early_termination_risk: {
-      get() {
-        return this.$store.state.paymentForm
-          .risk_table_per_operation_hour_payment_early_termination_risk;
-      },
-      set(value) {
-        this.$store.commit("UPDATE_FORM_FIELD", {
-          fieldName: "risk_table_per_operation_hour_payment_early_termination_risk",
-          value,
-        });
-      },
-    },
-    risk_table_per_operation_hour_payment_pay_per_use_risk: {
-      get() {
-        return this.$store.state.paymentForm
-          .risk_table_per_operation_hour_payment_pay_per_use_risk;
-      },
-      set(value) {
-        this.$store.commit("UPDATE_FORM_FIELD", {
-          fieldName: "risk_table_per_operation_hour_payment_pay_per_use_risk",
-          value,
-        });
-      },
-    },
-    risk_table_maintenance_credit_risk: {
-      get() {
-        return this.$store.state.paymentForm
-          .risk_table_maintenance_credit_risk;
-      },
-      set(value) {
-        this.$store.commit("UPDATE_FORM_FIELD", {
-          fieldName: "risk_table_maintenance_credit_risk",
-          value,
-        });
-      },
-    },
-    risk_table_maintenance_early_termination_risk: {
-      get() {
-        return this.$store.state.paymentForm
-          .risk_table_maintenance_early_termination_risk;
-      },
-      set(value) {
-        this.$store.commit("UPDATE_FORM_FIELD", {
-          fieldName: "risk_table_maintenance_early_termination_risk",
-          value,
-        });
-      },
-    },
-    risk_table_maintenance_pay_per_use_risk: {
-      get() {
-        return this.$store.state.paymentForm
-          .risk_table_maintenance_pay_per_use_risk;
-      },
-      set(value) {
-        this.$store.commit("UPDATE_FORM_FIELD", {
-          fieldName: "risk_table_maintenance_pay_per_use_risk",
-          value,
-        });
-      },
-    },
-    risk_table_insurance_credit_risk: {
-      get() {
-        return this.$store.state.paymentForm
-          .risk_table_insurance_credit_risk;
-      },
-      set(value) {
-        this.$store.commit("UPDATE_FORM_FIELD", {
-          fieldName: "risk_table_insurance_credit_risk",
-          value,
-        });
-      },
-    },
-    risk_table_insurance_early_termination_risk: {
-      get() {
-        return this.$store.state.paymentForm
-          .risk_table_insurance_early_termination_risk;
-      },
-      set(value) {
-        this.$store.commit("UPDATE_FORM_FIELD", {
-          fieldName: "risk_table_insurance_early_termination_risk",
-          value,
-        });
-      },
-    },
-    risk_table_insurance_pay_per_use_risk: {
-      get() {
-        return this.$store.state.paymentForm
-          .risk_table_insurance_pay_per_use_risk;
-      },
-      set(value) {
-        this.$store.commit("UPDATE_FORM_FIELD", {
-          fieldName: "risk_table_insurance_pay_per_use_risk",
-          value,
-        });
-      },
-    },
+    risk_table_monthly_instalment_credit_risk: storeCheckbox("risk_table_monthly_instalment_credit_risk"),
+    risk_table_monthly_instalment_early_termination_risk: storeCheckbox("risk_table_monthly_instalment_early_termination_risk"),
+    risk_table_monthly_instalment_pay_per_use_risk: storeCheckbox("risk_table_monthly_instalment_pay_per_use_risk"),
+    risk_table_per_operation_hour_payment_credit_risk: storeCheckbox("risk_table_per_operation_hour_payment_credit_risk"),
+    risk_table_per_operation_hour_payment_early_termination_risk: storeCheckbox("risk_table_per_operation_hour_payment_early_termination_risk"),
+    risk_table_per_operation_hour_payment_pay_per_use_risk: storeCheckbox("risk_table_per_operation_hour_payment_pay_per_use_risk"),
+    risk_table_maintenance_credit_risk: storeCheckbox("risk_table_maintenance_credit_risk"),
+    risk_table_maintenance_early_termination_risk: storeCheckbox("risk_table_maintenance_early_termination_risk"),
+    risk_table_maintenance_pay_per_use_risk: storeCheckbox("risk_table_maintenance_pay_per_use_risk"),
+    risk_table_insurance_credit_risk: storeCheckbox("risk_table_insurance_credit_risk"),
+    risk_table_insurance_early_termination_risk: storeCheckbox("risk_table_insurance_early_termination_risk"),
+    risk_table_insurance_pay_per_use_risk: storeCheckbox("risk_table_insurance_pay_per_use_risk")
   },
 };
 </script>

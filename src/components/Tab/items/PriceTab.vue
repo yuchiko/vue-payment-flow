@@ -16,13 +16,19 @@
       v-model="transportation"
       label-string='Transportation' 
     >
-      <Checkbox v-model="transportation_pay_upfront" :current-value='transportation_pay_upfront' label="Pay Upfront" />
+      <Checkbox 
+        v-model="transportation_pay_upfront" 
+        id='transportation_pay_upfront' 
+        label="Pay Upfront" />
     </NumberInput>
     <NumberInput
       v-model="installation_fee"
       label-string='Installation Fee' 
     >
-      <Checkbox v-model="installation_fee_pay_upfront" :current-value='installation_fee_pay_upfront' label="Pay Upfront" />
+      <Checkbox 
+        v-model="installation_fee_pay_upfront" 
+        id='installation_fee_pay_upfront' 
+        label="Pay Upfront" />
     </NumberInput>
     <NumberInput
       v-model="total_financing_amount"
@@ -45,6 +51,7 @@
 <script>
 import  { NumberInput, NumberSlider, Checkbox, Select } from "@/components/form";
 import data from '@/data/consts';
+import {storeCheckbox} from "@/helpers/computed_store"
 
 export default {
   name: 'PriceTab',
@@ -94,14 +101,7 @@ export default {
         this.$store.commit('UPDATE_FORM_FIELD', {fieldName: 'transportation', value})
       }
     },
-    transportation_pay_upfront: {
-      get () {
-        return this.$store.state.paymentForm.transportation_pay_upfront
-      },
-      set (value) {
-        this.$store.commit('UPDATE_FORM_FIELD', {fieldName: 'transportation_pay_upfront', value})
-      }
-    },
+    transportation_pay_upfront: storeCheckbox("transportation_pay_upfront"),
     installation_fee: {
       get () {
         return this.$store.state.paymentForm.installation_fee
@@ -110,14 +110,7 @@ export default {
         this.$store.commit('UPDATE_FORM_FIELD', {fieldName: 'installation_fee', value})
       }
     },
-    installation_fee_pay_upfront: {
-      get () {
-        return this.$store.state.paymentForm.installation_fee_pay_upfront
-      },
-      set (value) {
-        this.$store.commit('UPDATE_FORM_FIELD', {fieldName: 'installation_fee_pay_upfront', value})
-      }
-    },
+    installation_fee_pay_upfront: storeCheckbox("installation_fee_pay_upfront"),
     total_financing_amount: {
       get () {
         return this.$store.state.paymentForm.total_financing_amount
