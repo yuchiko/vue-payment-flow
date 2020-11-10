@@ -1,7 +1,7 @@
 <template>
   <div>
     <NumberInput v-model="iot_upfront_fee" label-string="IoT Upfront Fee" />
-    <NumberInput v-model="iot_running_fee" label-string="IoT Running Fee">
+    <NumberInput v-model="iot_running_fee" label-string="IoT Running Fee" sign="%">
       <template #right>
         <Select
           v-model="iot_running_fee_payment_type"
@@ -13,7 +13,7 @@
       v-model="fund_administration_fee"
       label-string="Fund Administration Fee"
     />
-    <NumberInput v-model="insurance" label-string="Insurance">
+    <NumberInput v-model="insurance" label-string="Insurance" sign="%">
       <template #right>
         <Select
           v-model="insurance_payment_type"
@@ -21,7 +21,7 @@
         />
       </template>
     </NumberInput>
-    <NumberInput v-model="standard_deviation" label-string="Standard Deviation">
+    <NumberInput v-model="standard_deviation" label-string="Standard Deviation" sign="%">
       <template #right>
         <div class="d-flex">
           <span>x</span>

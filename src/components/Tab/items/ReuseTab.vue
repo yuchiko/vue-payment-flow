@@ -7,11 +7,12 @@
     <NumberInput
       v-model="residual_value_term"
       label-string='Residual Value Term' 
+      sign=''
     >
       <template #right>
         <Select
           v-model="residual_value_term_payment_type" 
-          :options="formData.paymentTypes"
+          :options="formData.durationTypes"
         />
       </template>
     </NumberInput>
@@ -22,11 +23,12 @@
     <NumberInput
       v-model="refurbishment_term"
       label-string='Refurbishment Term' 
+      sign=''
     >
       <template #right>
         <Select
           v-model="refurbishment_term_payment_type" 
-          :options="formData.paymentTypes"
+          :options="formData.durationTypes"
         />
       </template>
     </NumberInput>

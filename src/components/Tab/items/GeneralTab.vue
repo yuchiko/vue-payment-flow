@@ -28,6 +28,7 @@
 import {Select, RadioButtons} from '@/components/form'
 import data from '@/data/mockFormData';
 import { mapState } from 'vuex';
+import {storeSelect} from "@/helpers/computed_store"
 
 export default {
   name: 'GeneralTab',
@@ -41,30 +42,9 @@ export default {
     ...mapState({
       shift_model: state => state.paymentForm.shift_model
     }),
-    client: {
-      get () {
-        return this.$store.state.paymentForm.client
-      },
-      set (value) {
-        this.$store.commit('UPDATE_FORM_FIELD', {fieldName: 'client', value})
-      }
-    },
-    equipment_type: {
-      get () {
-        return this.$store.state.paymentForm.equipment_type
-      },
-      set (value) {
-        this.$store.commit('UPDATE_FORM_FIELD', {fieldName: 'equipment_type', value})
-      }
-    },
-    financial_product: {
-      get () {
-        return this.$store.state.paymentForm.financial_product
-      },
-      set (value) {
-        this.$store.commit('UPDATE_FORM_FIELD', {fieldName: 'financial_product', value})
-      }
-    },
+    client: storeSelect('client'),
+    equipment_type: storeSelect('equipment_type'),
+    financial_product: storeSelect('financial_product'),
   },
   methods: {
     updateShiftModel(e) {
