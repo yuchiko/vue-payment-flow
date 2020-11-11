@@ -30,6 +30,8 @@ export default {
 .app {
   &__container {
     padding: 40px 30px;
+    max-width: 500px;
+    margin: 0 auto;
   }
 }
 </style>

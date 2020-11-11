@@ -50,6 +50,7 @@ export default {
             .is-active & {
                 border-color: $c-secondary;
                 background: $c-secondary;
+                cursor: pointer;
                 
                 svg > * {
                     fill: white;
