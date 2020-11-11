@@ -19,6 +19,7 @@
         />
       </div>
     </div>
+    <p v-if="errors" class="error-message">{{errors}}</p>
   </FieldGroup>
 </template>
 
@@ -37,6 +38,7 @@ export default {
   },
   props: {
     labelString: String,
+    errors: String,
   },
   components: { Label, FieldGroup, VueSlider },
   computed: {

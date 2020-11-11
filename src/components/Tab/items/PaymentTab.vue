@@ -26,6 +26,7 @@
       label-string="Contract Duration"
       :precision="0"
       sign=""
+      :errors='errors.contract_duration'
     >
       <template #right>
         <Select
@@ -43,9 +44,14 @@
 </template>
 
 <script>
+// data
+import {eventBus} from '@/main';
+import data from "@/data/consts";
+
+// components
 import VueSlider from "vue-slider-component";
 import { NumberInput, Select, FieldGroup } from "@/components/form";
-import data from "@/data/consts";
+
 
 export default {
   name: "PaymentTab",
@@ -53,9 +59,30 @@ export default {
   data() {
     return {
       formData: data,
+      requiredFields: {
+        'contract_duration': 'Contract duration',
+      },
+      errors: {}
     };
   },
-  props: {},
+  props: {
+    stepIndex: Number
+  },
+  created () {
+    eventBus.$on('verify-step-calc-change', checkStep => {
+      this.errors = {};
+
+      if (this.requiredFields) {
+        for (const [key, value] of Object.entries(this.requiredFields)) {
+          if (this.$store.state.paymentForm[key] === '' || this.$store.state.paymentForm[key] === null) {
+            this.errors[key] = value + ' field is required.'
+          }
+        }
+      }
+      
+      if (checkStep === this.stepIndex && Object.keys(this.errors).length === 0) eventBus.$emit('step-calc-change-verified');
+    })
+  },
   computed: {
     contract_duration: {
       get() {

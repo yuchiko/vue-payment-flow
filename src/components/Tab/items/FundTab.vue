@@ -1,7 +1,7 @@
 <template>
   <div>
-    <NumberInput v-model="iot_upfront_fee" label-string="IoT Upfront Fee" />
-    <NumberInput v-model="iot_running_fee" label-string="IoT Running Fee" sign="%">
+    <NumberInput v-model="iot_upfront_fee" label-string="IoT Upfront Fee" :errors='errors.iot_upfront_fee'/>
+    <NumberInput v-model="iot_running_fee" label-string="IoT Running Fee" sign="%" :errors='errors.iot_running_fee'>
       <template #right>
         <Select
           v-model="iot_running_fee_payment_type"
@@ -12,8 +12,9 @@
     <NumberInput
       v-model="fund_administration_fee"
       label-string="Fund Administration Fee"
+      :errors='errors.fund_administration_fee'
     />
-    <NumberInput v-model="insurance" label-string="Insurance" sign="%">
+    <NumberInput v-model="insurance" label-string="Insurance" sign="%" :errors='errors.insurance'>
       <template #right>
         <Select
           v-model="insurance_payment_type"
@@ -21,7 +22,7 @@
         />
       </template>
     </NumberInput>
-    <NumberInput v-model="standard_deviation" label-string="Standard Deviation" sign="%">
+    <NumberInput v-model="standard_deviation" label-string="Standard Deviation" sign="%" :errors='errors.standard_deviation'>
       <template #right>
         <div class="d-flex">
           <span>x</span>
@@ -33,6 +34,7 @@
         </div>
       </template>
     </NumberInput>
+      <p v-if="errors.standard_deviation_multiplier" class="error-message">{{errors.standard_deviation_multiplier}}</p>
     <FieldGroup>
       <Label class="label--bold">Margins</Label>
       <div class="group-numeric">
@@ -42,6 +44,7 @@
             sign="%"
             :precision="0"
             :value-range="{ min, max }"
+            :errors='errors.margin_funding'
           />
           <span>Funding</span>
         </div>
@@ -51,6 +54,7 @@
             sign="%"
             :precision="0"
             :value-range="{ min, max }"
+            :errors='errors.margin_credit_risk'
           />
           <span>Credit Risk</span>
         </div>
@@ -60,6 +64,7 @@
             sign="%"
             :precision="0"
             :value-range="{ min, max }"
+            :errors='errors.margin_early_termination_risk'
           />
           <span>Early Termination Risk</span>
         </div>
@@ -69,6 +74,7 @@
             sign="%"
             :precision="0"
             :value-range="{ min, max }"
+            :errors='errors.margin_pay_per_use_risk'
           />
           <span>Pay-per-use Risk</span>
         </div>
@@ -177,6 +183,14 @@
 </template>
 
 <script>
+// data
+import data from "@/data/consts"; 
+import {eventBus} from '@/main';
+
+// store
+import {storeCheckbox} from "@/helpers/computed_store"
+
+// components
 import {
   NumberInput,
   Select,
@@ -184,8 +198,6 @@ import {
   Label,
   Checkbox,
 } from "@/components/form";
-import data from "@/data/consts";
-import {storeCheckbox} from "@/helpers/computed_store"
 
 export default {
   name: "FundTab",
@@ -195,9 +207,39 @@ export default {
       formData: data,
       min: 0,
       max: 100,
+      requiredFields: {
+        'iot_upfront_fee': 'IoT Upfront Fee',
+        'iot_running_fee': 'IoT Running Fee', 
+        'fund_administration_fee': 'Fund Administration Fee',
+        'insurance': 'Insurance',
+        'standard_deviation': 'Standard Deviation',
+        'standard_deviation_multiplier': 'Standard Deviation Multiplier',
+        'margin_funding': 'Funding',
+        'margin_credit_risk': 'Credit Risk',
+        'margin_early_termination_risk': 'Early Termination Risk',
+        'margin_pay_per_use_risk': 'Pay-per-use Risk',
+      },
+      errors: {}
     };
   },
-  props: {},
+  props: {
+    stepIndex: Number
+  },
+  created () {
+    eventBus.$on('verify-step-next-change', checkStep => {
+      this.errors = {};
+
+      if (this.requiredFields) {
+        for (const [key, value] of Object.entries(this.requiredFields)) {
+          if (this.$store.state.paymentForm[key] === '' || this.$store.state.paymentForm[key] === null) {
+            this.errors[key] = value + ' field is required.'
+          }
+        }
+      }
+      
+      if (checkStep === this.stepIndex && Object.keys(this.errors).length === 0) eventBus.$emit('step-next-change-verified');
+    })
+  },
   computed: {
     iot_upfront_fee: {
       get() {

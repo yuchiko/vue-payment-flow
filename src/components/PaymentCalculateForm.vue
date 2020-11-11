@@ -25,14 +25,17 @@ export default {
   components: { Stepper, Navigation, Tab },
   data(){
     return {
-      step: 1,
+      step: 5,
       tabs: tabsData,
-      nextDisabled: true,
     }
   },
   created () {
     eventBus.$on('step-next-change-verified', () => {
       this.handleNextClick()
+    })
+
+    eventBus.$on('step-calc-change-verified', () => {
+      this.handleCalculateClick()
     })
   },
   methods: {
@@ -46,7 +49,7 @@ export default {
           this.verifyNextClick();
           break;
         case 'calculate':
-          this.handleCalculateClick();
+          this.verifyCalculateClick();
           break;
         default:
           console.error('Unknown button was clicked. Please check btnType property for NavigationButton components.');
@@ -55,6 +58,9 @@ export default {
     },
     verifyNextClick() {
       eventBus.$emit('verify-step-next-change', this.step);
+    },
+    verifyCalculateClick() {
+      eventBus.$emit('verify-step-calc-change', this.step);
     },
     handleBackClick() {
       return this.step > 1 ? this.step-- : this.step;

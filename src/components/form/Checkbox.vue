@@ -10,6 +10,7 @@
         v-on="parentListeners"
     />
     <label :for="componentId">{{label}}</label>
+    <p v-if="errors" class="error-message">{{errors}}</p>
   </div>
 </template>
 
@@ -20,6 +21,7 @@ export default {
   props: {
     label: String,
     id: String,
+    errors: String,
   },
   computed: {
     componentId() {

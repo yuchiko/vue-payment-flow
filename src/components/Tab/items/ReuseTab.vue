@@ -3,11 +3,13 @@
     <NumberInput
       v-model="residual_value"
       label-string='Residual Value' 
+      :errors="errors.residual_value"
     />
     <NumberInput
       v-model="residual_value_term"
       label-string='Residual Value Term' 
       sign=''
+      :errors="errors.residual_value_term"
     >
       <template #right>
         <Select
@@ -18,11 +20,13 @@
     </NumberInput>
     <NumberInput
       v-model="refurbishment_costs"
-      label-string='Refurbishment Costs' 
+      label-string='Refurbishment Costs'
+      :errors="errors.refurbishment_costs" 
     />
     <NumberInput
       v-model="refurbishment_term"
-      label-string='Refurbishment Term' 
+      label-string='Refurbishment Term'
+      :errors="errors.refurbishment_term" 
       sign=''
     >
       <template #right>
@@ -36,18 +40,44 @@
 </template>
 
 <script>
-import  { NumberInput, Select } from "@/components/form";
+import {eventBus} from '@/main';
 import data from '@/data/consts';
+
+// components
+import  { NumberInput, Select } from "@/components/form"
 
 export default {
   name: 'ReuseTab',
   components: {NumberInput, Select},
   data() {
     return {
-      formData: data
+      formData: data,
+      requiredFields: {
+        'residual_value': 'Residual value',
+        'residual_value_term': 'Residual value term', 
+        'refurbishment_costs': 'Refurbishment costs',
+        'refurbishment_term': 'Refurbishment term'
+      },
+      errors: {}
     }
   },
   props: {
+    stepIndex: Number
+  },
+  created () {
+    eventBus.$on('verify-step-next-change', checkStep => {
+      this.errors = {};
+
+      if (this.requiredFields) {
+        for (const [key, value] of Object.entries(this.requiredFields)) {
+          if (this.$store.state.paymentForm[key] === '' || this.$store.state.paymentForm[key] === null) {
+            this.errors[key] = value + ' field is required.'
+          }
+        }
+      }
+      
+      if (checkStep === this.stepIndex && Object.keys(this.errors).length === 0) eventBus.$emit('step-next-change-verified');
+    })
   },
   computed: {
     residual_value: {

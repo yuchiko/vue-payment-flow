@@ -17,6 +17,7 @@
         <slot name="right"></slot>
       </div>
     </div>
+    <p v-if="errors" class="error-message">{{errors}}</p>
   </FieldGroup>
 </template>
 
@@ -28,6 +29,7 @@ export default {
   name: "NumberInput",
   props: {
     labelString: String,
+    errors: String,
     sign: {
       type: String,
       default: '€'

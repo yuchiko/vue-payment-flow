@@ -2,7 +2,8 @@
   <div>
     <NumberInput
       v-model="list_price_equipment"
-      label-string='List Price Of Equipment' 
+      label-string='List Price Of Equipment'
+      :errors='errors.list_price_equipment' 
     />
     <NumberSlider
       v-model="discount_rate"
@@ -14,7 +15,8 @@
     />
     <NumberInput
       v-model="transportation"
-      label-string='Transportation' 
+      label-string='Transportation'
+      :errors='errors.transportation' 
     >
       <Checkbox 
         v-model="transportation_pay_upfront" 
@@ -23,7 +25,8 @@
     </NumberInput>
     <NumberInput
       v-model="installation_fee"
-      label-string='Installation Fee' 
+      label-string='Installation Fee'
+      :errors='errors.installation_fee'  
     >
       <Checkbox 
         v-model="installation_fee_pay_upfront" 
@@ -32,11 +35,13 @@
     </NumberInput>
     <NumberInput
       v-model="total_financing_amount"
-      label-string='Total Financing Amount' 
+      label-string='Total Financing Amount'
+      :errors='errors.total_financing_amount'  
     />
     <NumberInput
       v-model="maintenance_fee"
       label-string='Maintenance Fee' 
+      :errors='errors.maintenance_fee'
     >
       <template #right>
         <Select
@@ -49,9 +54,15 @@
 </template>
 
 <script>
-import  { NumberInput, NumberSlider, Checkbox, Select } from "@/components/form";
+// data
 import data from '@/data/consts';
+import {eventBus} from '@/main';
+
+// store
 import {storeCheckbox} from "@/helpers/computed_store"
+
+// components
+import  { NumberInput, NumberSlider, Checkbox, Select } from "@/components/form";
 
 export default {
   name: 'PriceTab',
@@ -63,10 +74,34 @@ export default {
   },
   data() {
     return {
-      formData: data
+      formData: data,
+      requiredFields: {
+        'list_price_equipment': 'List Price Of Equipment',
+        'transportation': 'Transportation', 
+        'installation_fee': 'Installation Fee',
+        'total_financing_amount': 'Total financing amount',
+        'maintenance_fee': 'Maintenance fee',
+      },
+      errors: {}
     }
   },
   props: {
+    stepIndex: Number
+  },
+  created () {
+    eventBus.$on('verify-step-next-change', checkStep => {
+      this.errors = {};
+
+      if (this.requiredFields) {
+        for (const [key, value] of Object.entries(this.requiredFields)) {
+          if (this.$store.state.paymentForm[key] === '' || this.$store.state.paymentForm[key] === null) {
+            this.errors[key] = value + ' field is required.'
+          }
+        }
+      }
+      
+      if (checkStep === this.stepIndex && Object.keys(this.errors).length === 0) eventBus.$emit('step-next-change-verified');
+    })
   },
   computed: {
     list_price_equipment: {
