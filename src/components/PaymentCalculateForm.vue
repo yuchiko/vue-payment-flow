@@ -13,6 +13,9 @@
 
 <script>
 import tabsData from '@/data/tabs';
+import {eventBus} from '@/main';
+
+// components
 import Stepper from './Stepper/';
 import Navigation from './Navigation/';
 import Tab from './Tab/';
@@ -22,9 +25,15 @@ export default {
   components: { Stepper, Navigation, Tab },
   data(){
     return {
-      step: 4,
+      step: 1,
       tabs: tabsData,
+      nextDisabled: true,
     }
+  },
+  created () {
+    eventBus.$on('step-next-change-verified', () => {
+      this.handleNextClick()
+    })
   },
   methods: {
     handleNavBtnClicked(btnType) {
@@ -33,7 +42,8 @@ export default {
           this.handleBackClick();
           break;
         case 'next':
-          this.handleNextClick();
+          // this.handleNextClick();
+          this.verifyNextClick();
           break;
         case 'calculate':
           this.handleCalculateClick();
@@ -42,6 +52,9 @@ export default {
           console.error('Unknown button was clicked. Please check btnType property for NavigationButton components.');
           break;
       }
+    },
+    verifyNextClick() {
+      eventBus.$emit('verify-step-next-change', this.step);
     },
     handleBackClick() {
       return this.step > 1 ? this.step-- : this.step;

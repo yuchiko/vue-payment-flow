@@ -13,6 +13,7 @@
         </span>
       </template>
     </v-select>
+    <p v-if="errors" class="error-message">{{errors}}</p>
   </FieldGroup>
 </template>
 
@@ -27,6 +28,7 @@ export default {
   components: { vSelect, selectIcon, Label, FieldGroup },
   props: {
     labelString: String,
+    errors: String
   },
   computed: {
     parentListeners: function() {

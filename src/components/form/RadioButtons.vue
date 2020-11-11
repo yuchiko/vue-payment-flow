@@ -15,6 +15,7 @@
         <label :for="'color-1-' + option.value">{{option.label}}</label>
       </div>
     </template>
+    <p v-if="errors" class="error-message">{{errors}}</p>
   </FieldGroup>
 </template>
 
@@ -27,7 +28,8 @@ export default {
   props: {
     labelString: String,
     checkedValue: String,
-    options: Array
+    options: Array,
+    errors: String
   },
   components: {Label, FieldGroup},
   computed: {

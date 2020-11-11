@@ -21,15 +21,7 @@ Vue.use(VueCurrencyInput, pluginOptions)
 
 Vue.config.productionTip = false
 
-// export default new Vuex.Store({
-//   state: {},
-//   getters: {},
-//   mutations: {},
-//   actions: {},
-//   modules: {
-//     paymentForm
-//   },
-// });
+export const eventBus = new Vue()
 
 new Vue({
   store,

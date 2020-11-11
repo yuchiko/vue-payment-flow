@@ -1,7 +1,7 @@
 <template>
   <div class="tab">
     <h2 class="tab__heading">{{tabHeading}}</h2>
-    <component :is="tabs[stepIndex].tabComponent" />
+    <component :is="tabs[stepIndex].tabComponent" :step-index="step"/>
   </div>
 </template>
 
